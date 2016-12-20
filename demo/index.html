@@ -1,0 +1,55 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+
+  <title>amp-viewer demo</title>
+
+  <script src="../amp-viewer.js"></script>
+
+  <style>
+  amp-viewer {
+    display: block;
+    max-width: 420px;
+    height: 600px;
+    overflow: auto;
+    margin: 20px auto;
+    border-color: #000;
+    border-radius: 20px;
+    border-style: solid;
+    border-width: 50px 5px;
+  }
+  </style>
+
+</head>
+<body>
+
+  <amp-viewer src="sample-content/experience-daydream-today.html"></amp-viewer>
+
+  <ul>
+    <li><a href="#experience-daydream-today.html">experience-daydream-today.html</a></li>
+    <li><a href="#chrome-faster-and-more-battery-friendly.html">chrome-faster-and-more-battery-friendly.html</a></li>
+    <li><a href="#search-results-are-officially-ampd.html">search-results-are-officially-ampd.html</a></li>
+    <li><a href="#android-pay-says-nei-hou-hong-kong.html">android-pay-says-nei-hou-hong-kong.html</a></li>
+    <li><a href="#go-bananas-for-2016-doodle-fruit-games.html">go-bananas-for-2016-doodle-fruit-games.html</a></li>
+  </ul>
+
+  <script>
+    window.addEventListener('hashchange', function() {
+      document.querySelector('amp-viewer').src = 'sample-content/' + window.location.hash.slice(1) || 'experience-daydream-today.html';
+    });
+  </script>
+
+</body>
+</html>

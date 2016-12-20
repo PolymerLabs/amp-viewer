@@ -1,0 +1,16 @@
+{
+  "name": "amp-viewer",
+  "version": "0.0.1",
+  "description": "A custom element that loads an AMP document into a shadow root on your page",
+  "authors": [
+    "The Polymer Authors"
+  ],
+  "license": "https://polymer.github.io/LICENSE.txt",
+  "homepage": "https://github.com/PolymerLabs/amp-viewer",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/PolymerLabs/amp-viewer"
+  },
+  "main": "amp-viewer.js",
+  "private": true
+}
