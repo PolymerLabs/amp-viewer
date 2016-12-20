@@ -11,6 +11,9 @@
     "type": "git",
     "url": "git://github.com/PolymerLabs/amp-viewer"
   },
+  "devDependencies": {
+    "webcomponentsjs": "^0.7.20"
+  },
   "main": "amp-viewer.js",
   "private": true
 }
