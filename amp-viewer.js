@@ -20,8 +20,11 @@
         this._src = '';
         this._host = null;
 
-        win.AMP_SHADOW = true;
-        this._installScript('https://cdn.ampproject.org/shadow-v0.js');
+        if (!win.AMP_SHADOW) {
+          win.AMP_SHADOW = true;
+          this._installScript('https://cdn.ampproject.org/shadow-v0.js');
+        }
+
         this._ampReadyPromise = new Promise(function(resolve) {
           (win.AMP = win.AMP || []).push(resolve);
         });
