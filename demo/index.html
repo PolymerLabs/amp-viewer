@@ -20,36 +20,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <link rel="import" href="../bower_components/promise-polyfill/promise-polyfill-lite.html">
   <script src="../amp-viewer.js"></script>
 
-  <style>
-  amp-viewer {
-    display: block;
-    max-width: 420px;
-    height: 600px;
-    overflow: auto;
-    margin: 20px auto;
-    border-color: #000;
-    border-radius: 20px;
-    border-style: solid;
-    border-width: 50px 5px;
-  }
-  </style>
-
 </head>
 <body>
 
-  <amp-viewer src="sample-content/experience-daydream-today.html"></amp-viewer>
+  Select an article:
+  <select id="select">
+    <option>experience-daydream-today.html</option>
+    <option>chrome-faster-and-more-battery-friendly.html</option>
+    <option>search-results-are-officially-ampd.html</option>
+    <option>android-pay-says-nei-hou-hong-kong.html</option>
+    <option>go-bananas-for-2016-doodle-fruit-games.html</option>
+  </select>
 
-  <ul>
-    <li><a href="#experience-daydream-today.html">experience-daydream-today.html</a></li>
-    <li><a href="#chrome-faster-and-more-battery-friendly.html">chrome-faster-and-more-battery-friendly.html</a></li>
-    <li><a href="#search-results-are-officially-ampd.html">search-results-are-officially-ampd.html</a></li>
-    <li><a href="#android-pay-says-nei-hou-hong-kong.html">android-pay-says-nei-hou-hong-kong.html</a></li>
-    <li><a href="#go-bananas-for-2016-doodle-fruit-games.html">go-bananas-for-2016-doodle-fruit-games.html</a></li>
-  </ul>
+  <amp-viewer id="viewer" src="sample-content/experience-daydream-today.html"></amp-viewer>
 
   <script>
-    window.addEventListener('hashchange', function() {
-      document.querySelector('amp-viewer').src = 'sample-content/' + window.location.hash.slice(1) || 'experience-daydream-today.html';
+    select.addEventListener('change', function(e) {
+      viewer.src = 'sample-content/' + select.value;
     });
   </script>
 
