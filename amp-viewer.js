@@ -25,10 +25,6 @@
           this._installScript('https://cdn.ampproject.org/shadow-v0.js');
         }
 
-        this._ampReadyPromise = new Promise(function(resolve) {
-          (win.AMP = win.AMP || []).push(resolve);
-        });
-
         if (this.hasAttribute('src')) {
           this.src = this.getAttribute('src');
         }
@@ -78,8 +74,8 @@
       },
 
       _loadDocument: function(src) {
-        this._fetchDocument(src).then(function(doc) {
-          this._ampReadyPromise.then(function(AMP) {
+        this._fetchDocument(src, function(doc) {
+          (win.AMP = win.AMP || []).push(function(AMP) {
             this._host = win.document.createElement('div');
             this._host.classList.add('amp-doc-host');
             this.appendChild(this._host);
@@ -95,33 +91,31 @@
         ownerDoc.head.appendChild(el);
       },
 
-      _fetchDocument: function(src) {
-        return new Promise(function(resolve, reject) {
-          var xhr = new XMLHttpRequest();
-          xhr.open('GET', src, true);
-          xhr.responseType = 'document';
-          xhr.setRequestHeader('Accept', 'text/html');
-          xhr.onreadystatechange = function() {
-            if (xhr.readyState < /* STATUS_RECEIVED */ 2) {
-              return;
+      _fetchDocument: function(src, callback) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', src, true);
+        xhr.responseType = 'document';
+        xhr.setRequestHeader('Accept', 'text/html');
+        xhr.onreadystatechange = function() {
+          if (xhr.readyState < /* STATUS_RECEIVED */ 2) {
+            return;
+          }
+          if (xhr.status < 100 || xhr.status > 599) {
+            xhr.onreadystatechange = null;
+            throw new Error('Unknown HTTP status ${xhr.status}');
+            return;
+          }
+          if (xhr.readyState == /* COMPvarE */ 4) {
+            if (xhr.responseXML) {
+              callback(xhr.responseXML);
+            } else {
+              throw new Error('No xhr.responseXML');
             }
-            if (xhr.status < 100 || xhr.status > 599) {
-              xhr.onreadystatechange = null;
-              reject(new Error('Unknown HTTP status ${xhr.status}'));
-              return;
-            }
-            if (xhr.readyState == /* COMPvarE */ 4) {
-              if (xhr.responseXML) {
-                resolve(xhr.responseXML);
-              } else {
-                reject(new Error('No xhr.responseXML'));
-              }
-            }
-          };
-          xhr.onerror = function() { reject(new Error('Network failure')) };
-          xhr.onabort = function() { reject(new Error('Request aborted')) };
-          xhr.send();
-        });
+          }
+        };
+        xhr.onerror = function() { throw new Error('Network failure') };
+        xhr.onabort = function() { throw new Error('Request aborted') };
+        xhr.send();
       }
     }
   });
