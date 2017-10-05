@@ -8,7 +8,7 @@
 ```
 <custom-element-demo>
   <template>
-    <script src="amp-viewer.js"></script>
+    <script src="amp-viewer.html"></script>
     <next-code-block></next-code-block>
   </template>
 </custom-element-demo>
