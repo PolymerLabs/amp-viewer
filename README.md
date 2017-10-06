@@ -4,16 +4,6 @@
 
 ## Demo
 
-<!--
-```
-<custom-element-demo>
-  <template>
-    <link rel="import" href="amp-viewer.html" async>
-    <next-code-block></next-code-block>
-  </template>
-</custom-element-demo>
-```
--->
 ```html
 <amp-viewer src="demo/sample-content/experience-daydream-today.html"></amp-viewer>
 ```

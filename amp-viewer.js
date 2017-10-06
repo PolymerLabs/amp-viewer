@@ -15,22 +15,19 @@
     constructor() {
       super();
 
-      this._amp = null;
-      this._src = '';
-      this._host = null;
-    }
-
-    connectedCallback() {
-
       if (!window.AMP_SHADOW) {
         window.AMP_SHADOW = true;
         this._installScript(
           'https://cdn.ampproject.org/shadow-v0.js');
       }
 
-      if (this.hasAttribute('src')) {
-        this.src = this.getAttribute('src');
-      }
+      this._amp = null;
+      this._src = '';
+      this._host = null;
+    }
+
+    static get observedAttributes() {
+      return ['src'];
     }
 
     set src(src) {
@@ -53,11 +50,7 @@
     }
 
     attributeChangedCallback(name, old, value) {
-      var desc = Object.getOwnPropertyDescriptor(this.__proto__,
-        name);
-      if (desc && desc.set != null) {
-        this[name] = value;
-      }
+      if (old !== value) this.src = value;
     }
 
     setVisibilityState(state) {
