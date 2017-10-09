@@ -10,7 +10,7 @@
 
 'use strict'; {
 
-  customElements.define('amp-viewer', class extends HTMLElement {
+  customElements.define('amp-viewer', class AmpViewerElement extends HTMLElement {
 
     constructor() {
       super();
@@ -36,12 +36,12 @@
       }
 
       this._src = src;
-      this.clear();
+      this._clear();
       if (!src) {
         this.removeAttribute('src');
       } else {
         this.setAttribute('src', src);
-        this.loadDocument(src);
+        this._loadDocument(src);
       }
     }
 
@@ -53,13 +53,13 @@
       if (old !== value) this.src = value;
     }
 
-    setVisibilityState(state) {
+    _setVisibilityState(state) {
       if (this._amp) {
-        this._amp.setVisibilityState(state);
+        this._amp._setVisibilityState(state);
       }
     }
 
-    clear() {
+    _clear() {
       if (this._amp) {
         this._amp.close();
         this._amp = null;
@@ -70,7 +70,7 @@
       }
     }
 
-    loadDocument(src) {
+    _loadDocument(src) {
       this.fetchDocument(src, function(doc) {
         (window.AMP = window.AMP || []).push(function(AMP) {
           this._host = window.document.createElement('div');
