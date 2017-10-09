@@ -71,7 +71,7 @@
     }
 
     _loadDocument(src) {
-      this.fetchDocument(src, function(doc) {
+      this._fetchDocument(src, function(doc) {
         (window.AMP = window.AMP || []).push(function(AMP) {
           this._host = window.document.createElement('div');
           this._host.classList.add('amp-doc-host');
@@ -89,7 +89,7 @@
       ownerDoc.head.appendChild(el);
     }
 
-    fetchDocument(src, callback) {
+    _fetchDocument(src, callback) {
       var xhr = new XMLHttpRequest();
       xhr.open('GET', src, true);
       xhr.responseType = 'document';
