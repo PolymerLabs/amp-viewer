@@ -4,16 +4,6 @@
 
 ## Demo
 
-<!--
-```
-<custom-element-demo>
-  <template>
-    <script src="amp-viewer.js"></script>
-    <next-code-block></next-code-block>
-  </template>
-</custom-element-demo>
-```
--->
 ```html
 <amp-viewer src="demo/sample-content/experience-daydream-today.html"></amp-viewer>
 ```
